@@ -1,0 +1,9 @@
+C:\Users\Anne\documents\visual studio 2015\Projects\WpfApplication1\ConsoleApplication1\bin\Debug\ConsoleApplication1.exe.config
+C:\Users\Anne\documents\visual studio 2015\Projects\WpfApplication1\ConsoleApplication1\bin\Debug\ConsoleApplication1.exe
+C:\Users\Anne\documents\visual studio 2015\Projects\WpfApplication1\ConsoleApplication1\bin\Debug\ConsoleApplication1.pdb
+C:\Users\Anne\documents\visual studio 2015\Projects\WpfApplication1\ConsoleApplication1\bin\Debug\MySql.Data.dll
+C:\Users\Anne\documents\visual studio 2015\Projects\WpfApplication1\ConsoleApplication1\bin\Debug\Newtonsoft.Json.dll
+C:\Users\Anne\documents\visual studio 2015\Projects\WpfApplication1\ConsoleApplication1\bin\Debug\Newtonsoft.Json.xml
+C:\Users\Anne\documents\visual studio 2015\Projects\WpfApplication1\ConsoleApplication1\obj\Debug\Console.csprojResolveAssemblyReference.cache
+C:\Users\Anne\documents\visual studio 2015\Projects\WpfApplication1\ConsoleApplication1\obj\Debug\ConsoleApplication1.exe
+C:\Users\Anne\documents\visual studio 2015\Projects\WpfApplication1\ConsoleApplication1\obj\Debug\ConsoleApplication1.pdb

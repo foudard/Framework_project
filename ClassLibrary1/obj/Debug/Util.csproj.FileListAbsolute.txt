@@ -1,0 +1,9 @@
+c:\users\anne\documents\visual studio 2015\Projects\WpfApplication1\ClassLibrary1\bin\Debug\ClassLibrary1.dll.config
+c:\users\anne\documents\visual studio 2015\Projects\WpfApplication1\ClassLibrary1\bin\Debug\ClassLibrary1.dll
+c:\users\anne\documents\visual studio 2015\Projects\WpfApplication1\ClassLibrary1\bin\Debug\ClassLibrary1.pdb
+c:\users\anne\documents\visual studio 2015\Projects\WpfApplication1\ClassLibrary1\bin\Debug\MySql.Data.dll
+c:\users\anne\documents\visual studio 2015\Projects\WpfApplication1\ClassLibrary1\bin\Debug\Newtonsoft.Json.dll
+c:\users\anne\documents\visual studio 2015\Projects\WpfApplication1\ClassLibrary1\bin\Debug\Newtonsoft.Json.xml
+c:\users\anne\documents\visual studio 2015\Projects\WpfApplication1\ClassLibrary1\obj\Debug\Util.csprojResolveAssemblyReference.cache
+c:\users\anne\documents\visual studio 2015\Projects\WpfApplication1\ClassLibrary1\obj\Debug\ClassLibrary1.dll
+c:\users\anne\documents\visual studio 2015\Projects\WpfApplication1\ClassLibrary1\obj\Debug\ClassLibrary1.pdb

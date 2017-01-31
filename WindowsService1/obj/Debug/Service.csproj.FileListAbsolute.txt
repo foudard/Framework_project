@@ -1,0 +1,9 @@
+C:\Users\Anne\documents\visual studio 2015\Projects\WpfApplication1\WindowsService1\bin\Debug\WindowsService1.exe.config
+C:\Users\Anne\documents\visual studio 2015\Projects\WpfApplication1\WindowsService1\bin\Debug\WindowsService1.exe
+C:\Users\Anne\documents\visual studio 2015\Projects\WpfApplication1\WindowsService1\bin\Debug\WindowsService1.pdb
+C:\Users\Anne\documents\visual studio 2015\Projects\WpfApplication1\WindowsService1\bin\Debug\MySql.Data.dll
+C:\Users\Anne\documents\visual studio 2015\Projects\WpfApplication1\WindowsService1\bin\Debug\Newtonsoft.Json.dll
+C:\Users\Anne\documents\visual studio 2015\Projects\WpfApplication1\WindowsService1\bin\Debug\Newtonsoft.Json.xml
+C:\Users\Anne\documents\visual studio 2015\Projects\WpfApplication1\WindowsService1\obj\Debug\Service.csprojResolveAssemblyReference.cache
+C:\Users\Anne\documents\visual studio 2015\Projects\WpfApplication1\WindowsService1\obj\Debug\WindowsService1.exe
+C:\Users\Anne\documents\visual studio 2015\Projects\WpfApplication1\WindowsService1\obj\Debug\WindowsService1.pdb
