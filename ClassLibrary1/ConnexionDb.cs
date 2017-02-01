@@ -44,7 +44,9 @@ namespace Util
             int result = 0;
             try
             {
-                MySqlCommand cmd = new MySqlCommand("SELECT id FROM user WHERE login=@login AND password=@pwd", connection);
+                MySqlCommand cmd = new MySqlCommand("SELECT id FROM user AS u " + 
+                                                    "JOIN user_has_role AS uhr ON u.id = uhr.User_id " +
+                                                    "WHERE login=@login AND password=@pwd AND Role_id=1", connection);
                 cmd.Parameters.AddWithValue("@login", login);
                 cmd.Parameters.AddWithValue("@pwd", password);
                 cmd.Prepare();
@@ -106,6 +108,30 @@ namespace Util
                 result = cmd.ExecuteNonQuery();
             }
             catch (MySqlException e)
+            {
+                MessageBox.Show(e.Message);
+            }
+
+            return result;
+        }
+
+        public string getData(int idData)
+        {
+            string result = "";
+            try
+            {
+                MySqlCommand cmd = new MySqlCommand("SELECT datajson FROM data WHERE id=@id", connection);
+                cmd.Parameters.AddWithValue("@id", idData);
+                cmd.Prepare();
+
+                MySqlDataReader reader = cmd.ExecuteReader();
+
+                while (reader.Read())
+                {
+                    result = reader.GetString("datajson");
+                }
+
+            } catch(MySqlException e)
             {
                 MessageBox.Show(e.Message);
             }
