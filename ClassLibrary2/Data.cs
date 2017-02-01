@@ -8,14 +8,6 @@ namespace Classes
 {
     public class Data
     {
-        private int id;
-
-        public int Id
-        {
-            get { return id; }
-            set { id = value; }
-        }
-
         private string dataJson;
 
         public string DataJson

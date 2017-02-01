@@ -50,7 +50,12 @@ namespace Util
                 cmd.Prepare();
                 MySqlDataReader reader = cmd.ExecuteReader();
 
-                result = reader.GetInt32("id") > 0 ? reader.GetInt32("id") : -1;
+                while(reader.Read())
+                {
+                    result = reader.GetInt32("id") > 0 ? reader.GetInt32("id") : -1;
+                }
+
+                reader.Close();              
             }
             catch (MySqlException e)
             {
@@ -71,9 +76,14 @@ namespace Util
 
                 MySqlDataReader reader = cmd.ExecuteReader();
 
-                user.Id = reader.GetInt32("id");
-                user.LastName = reader.GetString("lastname");
-                user.FirstName = reader.GetString("firstname");
+                while(reader.Read())
+                {
+                    user.Id = reader.GetInt32("id");
+                    user.LastName = reader.GetString("lastname");
+                    user.FirstName = reader.GetString("firstname");
+                }
+
+                reader.Close();
             }
             catch (MySqlException e)
             {
@@ -88,7 +98,7 @@ namespace Util
 
             try
             {
-                MySqlCommand cmd = new MySqlCommand("INSERT INTO Data (datajson, User_id) VALUES (@datajson, @userId)", connection);
+                MySqlCommand cmd = new MySqlCommand("INSERT INTO data (datajson, User_id) VALUES (@datajson, @userId)", connection);
                 cmd.Parameters.AddWithValue("@datajson", data.DataJson);
                 cmd.Parameters.AddWithValue("@userId", data.UserId);
                 cmd.Prepare();

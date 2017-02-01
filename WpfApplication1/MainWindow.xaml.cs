@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Classes;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -28,17 +29,20 @@ namespace WpfApplication1
             InitializeComponent();
         }
 
-        private Boolean searchInDb(string login, string pwd)
+        private int searchInDb(string login, string pwd)
         {
-            bool exist = this.connection.checkConnection(login, pwd);
+            int exist = this.connection.checkConnection(login, pwd);
             return exist;
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-            if (this.searchInDb(this.txtLogin.Text.ToString(), this.txtPwd.Password.ToString()))
+            int idUser = this.searchInDb(this.txtLogin.Text.ToString(), this.txtPwd.Password.ToString());
+            if (idUser != -1 )
             {
-                var dataInput = new DataInput();
+                User user = this.connection.getUser(idUser);
+
+                var dataInput = new DataInput(user);
                 dataInput.Show();
                 this.Close(); 
             }

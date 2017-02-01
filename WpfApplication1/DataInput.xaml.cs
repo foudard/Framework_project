@@ -1,4 +1,5 @@
 ﻿using Classes;
+using Newtonsoft.Json.Linq;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -38,7 +39,10 @@ namespace WpfApplication1
             data.DataJson = input;
             data.UserId = user.Id;
 
-            this.connexion.insertData(data);
+            if (JsonUtils.IsValidJson(input))
+            {
+                this.connexion.insertData(data);
+            }
         }
     }
 }

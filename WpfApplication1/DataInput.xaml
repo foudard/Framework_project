@@ -17,9 +17,8 @@
                 <ColumnDefinition Width="0.65*"/>
                 <ColumnDefinition Width="0.35*"/>
             </Grid.ColumnDefinitions>
-            <Button Grid.Row="2" Grid.Column="1">Valider</Button>
+            <Button Grid.Column="1" Click="Button_Click">Valider</Button>
         </Grid>
         <TextBox Name="txtInput" Grid.Row="1" />
-        
     </Grid>
 </Window>

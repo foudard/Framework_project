@@ -19,3 +19,10 @@ c:\users\anne\documents\visual studio 2015\Projects\WpfApplication1\WpfApplicati
 c:\users\anne\documents\visual studio 2015\Projects\WpfApplication1\WpfApplication1\bin\Debug\ClassLibrary1.dll
 c:\users\anne\documents\visual studio 2015\Projects\WpfApplication1\WpfApplication1\bin\Debug\MySql.Data.dll
 c:\users\anne\documents\visual studio 2015\Projects\WpfApplication1\WpfApplication1\bin\Debug\ClassLibrary1.pdb
+C:\Users\Anne\documents\visual studio 2015\Projects\WpfApplication1\WpfApplication1\bin\Debug\ClassLibrary2.dll
+C:\Users\Anne\documents\visual studio 2015\Projects\WpfApplication1\WpfApplication1\bin\Debug\EntityFramework.dll
+C:\Users\Anne\documents\visual studio 2015\Projects\WpfApplication1\WpfApplication1\bin\Debug\EntityFramework.SqlServer.dll
+C:\Users\Anne\documents\visual studio 2015\Projects\WpfApplication1\WpfApplication1\bin\Debug\MySql.Data.Entity.EF6.dll
+C:\Users\Anne\documents\visual studio 2015\Projects\WpfApplication1\WpfApplication1\bin\Debug\ClassLibrary2.pdb
+C:\Users\Anne\documents\visual studio 2015\Projects\WpfApplication1\WpfApplication1\bin\Debug\EntityFramework.xml
+C:\Users\Anne\documents\visual studio 2015\Projects\WpfApplication1\WpfApplication1\bin\Debug\EntityFramework.SqlServer.xml

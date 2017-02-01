@@ -6,3 +6,9 @@ C:\Users\Anne\documents\visual studio 2015\Projects\WpfApplication1\ClassLibrary
 C:\Users\Anne\documents\visual studio 2015\Projects\WpfApplication1\ClassLibrary3\bin\Debug\Newtonsoft.Json.xml
 C:\Users\Anne\documents\visual studio 2015\Projects\WpfApplication1\ClassLibrary3\obj\Debug\ClassLibrary3.dll
 C:\Users\Anne\documents\visual studio 2015\Projects\WpfApplication1\ClassLibrary3\obj\Debug\ClassLibrary3.pdb
+C:\Users\Anne\documents\visual studio 2015\Projects\WpfApplication1\ClassLibrary3\bin\Debug\EntityFramework.dll
+C:\Users\Anne\documents\visual studio 2015\Projects\WpfApplication1\ClassLibrary3\bin\Debug\EntityFramework.SqlServer.dll
+C:\Users\Anne\documents\visual studio 2015\Projects\WpfApplication1\ClassLibrary3\bin\Debug\MySql.Data.Entity.EF6.dll
+C:\Users\Anne\documents\visual studio 2015\Projects\WpfApplication1\ClassLibrary3\bin\Debug\EntityFramework.xml
+C:\Users\Anne\documents\visual studio 2015\Projects\WpfApplication1\ClassLibrary3\bin\Debug\EntityFramework.SqlServer.xml
+C:\Users\Anne\documents\visual studio 2015\Projects\WpfApplication1\ClassLibrary3\obj\Debug\Objets.csprojResolveAssemblyReference.cache
