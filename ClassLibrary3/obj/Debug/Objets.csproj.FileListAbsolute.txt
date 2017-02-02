@@ -12,3 +12,16 @@ C:\Users\Anne\documents\visual studio 2015\Projects\WpfApplication1\ClassLibrary
 C:\Users\Anne\documents\visual studio 2015\Projects\WpfApplication1\ClassLibrary3\bin\Debug\EntityFramework.xml
 C:\Users\Anne\documents\visual studio 2015\Projects\WpfApplication1\ClassLibrary3\bin\Debug\EntityFramework.SqlServer.xml
 C:\Users\Anne\documents\visual studio 2015\Projects\WpfApplication1\ClassLibrary3\obj\Debug\Objets.csprojResolveAssemblyReference.cache
+C:\Users\flori_000\Documents\Visual Studio 2015\Projects\Framework_project\ClassLibrary3\bin\Debug\ClassLibrary3.dll.config
+C:\Users\flori_000\Documents\Visual Studio 2015\Projects\Framework_project\ClassLibrary3\bin\Debug\ClassLibrary3.dll
+C:\Users\flori_000\Documents\Visual Studio 2015\Projects\Framework_project\ClassLibrary3\bin\Debug\ClassLibrary3.pdb
+C:\Users\flori_000\Documents\Visual Studio 2015\Projects\Framework_project\ClassLibrary3\bin\Debug\EntityFramework.dll
+C:\Users\flori_000\Documents\Visual Studio 2015\Projects\Framework_project\ClassLibrary3\bin\Debug\EntityFramework.SqlServer.dll
+C:\Users\flori_000\Documents\Visual Studio 2015\Projects\Framework_project\ClassLibrary3\bin\Debug\MySql.Data.dll
+C:\Users\flori_000\Documents\Visual Studio 2015\Projects\Framework_project\ClassLibrary3\bin\Debug\MySql.Data.Entity.EF6.dll
+C:\Users\flori_000\Documents\Visual Studio 2015\Projects\Framework_project\ClassLibrary3\bin\Debug\Newtonsoft.Json.dll
+C:\Users\flori_000\Documents\Visual Studio 2015\Projects\Framework_project\ClassLibrary3\bin\Debug\EntityFramework.xml
+C:\Users\flori_000\Documents\Visual Studio 2015\Projects\Framework_project\ClassLibrary3\bin\Debug\EntityFramework.SqlServer.xml
+C:\Users\flori_000\Documents\Visual Studio 2015\Projects\Framework_project\ClassLibrary3\bin\Debug\Newtonsoft.Json.xml
+C:\Users\flori_000\Documents\Visual Studio 2015\Projects\Framework_project\ClassLibrary3\obj\Debug\ClassLibrary3.dll
+C:\Users\flori_000\Documents\Visual Studio 2015\Projects\Framework_project\ClassLibrary3\obj\Debug\ClassLibrary3.pdb

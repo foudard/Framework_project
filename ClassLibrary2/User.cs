@@ -48,5 +48,22 @@ namespace Classes
             get { return password; }
             set { password = value; }
         }
+
+        private List<Role> roles;
+
+        public List<Role> Roles
+        {
+            get { return roles; }
+            set { roles = value; }
+        }
+
+        private List<Data> data;
+
+        public List<Data> Data
+        {
+            get { return data; }
+            set { data = value; }
+        }
+
     }
 }

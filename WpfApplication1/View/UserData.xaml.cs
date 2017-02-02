@@ -13,36 +13,17 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
-using Util;
 
 namespace WpfApplication1
 {
     /// <summary>
     /// Logique d'interaction pour DataInput.xaml
     /// </summary>
-    public partial class DataInput : Window
+    public partial class UserData : Page
     {
-        User user;
-        ConnexionDb connexion = ConnexionDb.Instance();
-
-        public DataInput(User user)
+        public UserData()
         {
-            this.user = user;
             InitializeComponent();
-        }
-
-        private void Button_Click(object sender, RoutedEventArgs e)
-        {
-            string input = this.txtInput.Text;
-
-            Data data = new Data();
-            data.DataJson = input;
-            data.UserId = user.Id;
-
-            if (JsonUtils.IsValidJson(input))
-            {
-                this.connexion.insertData(data);
-            }
         }
     }
 }

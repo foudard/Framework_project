@@ -39,32 +39,76 @@ namespace Util
             }
         }
 
-        public int checkConnection(string login, string password)
+        public User checkConnection(string login, string password)
         {
             int result = 0;
+            //List<Role> roles = new List<Role>();
+            User user = new User();
+
             try
             {
-                MySqlCommand cmd = new MySqlCommand("SELECT id FROM user AS u " + 
-                                                    "JOIN user_has_role AS uhr ON u.id = uhr.User_id " +
-                                                    "WHERE login=@login AND password=@pwd AND Role_id=1", connection);
+                MySqlCommand cmd = new MySqlCommand("SELECT * FROM user WHERE login=@login AND password=@pwd", connection);
                 cmd.Parameters.AddWithValue("@login", login);
                 cmd.Parameters.AddWithValue("@pwd", password);
                 cmd.Prepare();
+
                 MySqlDataReader reader = cmd.ExecuteReader();
 
                 while(reader.Read())
                 {
-                    result = reader.GetInt32("id") > 0 ? reader.GetInt32("id") : -1;
+                    user.Id = reader.GetInt32("id");
+                    user.LastName = reader.GetString("lastname");
+                    user.FirstName = reader.GetString("firstname");
                 }
 
-                reader.Close();              
+                reader.Close();  
             }
             catch (MySqlException e)
             {
                 MessageBox.Show(e.Message);
             }
 
-            return result;
+            if(user.Id != 0)
+            {
+                user.Roles = getUserRoles(user.Id);
+
+                // Récupérer data
+            }
+
+            return user;
+        }
+
+        public List<Role> getUserRoles(int userId)
+        {
+            List<Role> roles = new List<Role>();
+            try
+            {
+                MySqlCommand cmd = new MySqlCommand("SELECT * FROM user_has_role as uhr " +
+                                                    "JOIN role AS r ON r.id = uhr.Role_id WHERE User_id=@userId", connection);
+                cmd.Parameters.AddWithValue("@userId", userId);
+                cmd.Prepare();
+
+                MySqlDataReader reader = cmd.ExecuteReader();
+
+
+                while (reader.Read())
+                {
+                    Role role = new Role();
+                    role.Id = reader.GetInt32("Role_id");
+                    role.Name = reader.GetString("name");
+
+                    roles.Add(role);
+
+                }
+
+                reader.Close();
+            }
+            catch (MySqlException e)
+            {
+                MessageBox.Show(e.Message);
+            }
+
+            return roles;
         }
 
         public User getUser(int id)
@@ -92,6 +136,49 @@ namespace Util
                 MessageBox.Show(e.Message);     
             }
             return user;
+        }
+
+        public int insertUser(User user)
+        {
+            int result = 0;
+            try
+            {
+                MySqlCommand cmd = new MySqlCommand("INSERT INTO user (firstname, lastname, login, password) VALUES (@firstname, @lastname, @login, @password) SELECT LAST_INSERT_ID()", connection);
+                cmd.Parameters.AddWithValue("@firstname", user.FirstName);
+                cmd.Parameters.AddWithValue("@lastname", user.LastName);
+                cmd.Parameters.AddWithValue("@login", user.Login);
+                cmd.Parameters.AddWithValue("@password", user.Password);
+                cmd.Prepare();
+
+                result = cmd.ExecuteNonQuery();
+                long userid = cmd.LastInsertedId;
+                user.Id = (int)userid;
+            }
+            catch (MySqlException e)
+            {
+                MessageBox.Show(e.Message);
+            }
+            this.addRole(user);
+            return result;
+        }
+
+        public void addRole (User user)
+        {
+            try
+            {
+                foreach (Role role in user.Roles)
+                {
+                    MySqlCommand cmd = new MySqlCommand("INSERT INTO user_has_role (User_id, Role_id) VALUES (@userid, @roleid)", connection);
+                    cmd.Parameters.AddWithValue("@userid", user.Id);
+                    cmd.Parameters.AddWithValue("@roleid", role.Id);
+                    cmd.Prepare();
+                    cmd.ExecuteNonQuery();
+                }
+            }
+            catch (MySqlException e)
+            {
+                MessageBox.Show(e.Message);
+            }
         }
 
         public int insertData(Data data)
