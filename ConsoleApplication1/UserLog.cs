@@ -49,8 +49,26 @@ namespace ConsoleApplication1
             set { datas = value; }
         }
 
+        private string selectedDataType;
+
+        public string SelectedDataType
+        {
+            get { return selectedDataType; }
+            set { selectedDataType = value; }
+        }
+
+        private Data selectedData;
+
+        public Data SelectedData
+        {
+            get { return selectedData; }
+            set { selectedData = value; }
+        }
 
 
+
+
+        private ConnexionDb connexion = ConnexionDb.Instance();
 
         public void authUser()
         {
@@ -146,36 +164,99 @@ namespace ConsoleApplication1
             }
 
             Console.WriteLine("Séléctionnez un type d'objet : ");
-            string selectedDataType = Console.ReadLine();
-            selectDataFromType(selectedDataType);
+            SelectedDataType = Console.ReadLine();
+            selectDataFromType();
 
             Console.ReadKey();
 
         }
 
-        public void selecData(int id)
+        public void selecData(int id, List<Data> datasList = null)
         {
-            string datajson = datas.Find(data => data.Id == id).DataJson;
+            if (datasList == null)
+            {
+                datasList = Datas;
+            }
+
+            SelectedData = datasList.Find(data => data.Id == id);
+
+            string datajson = SelectedData.DataJson;
 
             Console.WriteLine(datajson);
         }
            
-        public void selectDataFromType(string type)
+        public void selectDataFromType()
         {
             List<string> jsonObject = new List<string>();
             bool isObject = false;
 
+            List<Data> subDataList = new List<Data>();
+
             foreach (Data d in datas)
             {
 
-                isObject = JsonUtils.GetJson(d.DataJson, type);
+                isObject = JsonUtils.GetJson(d.DataJson, SelectedDataType);
 
                 if (isObject)
                 {
-                    Console.WriteLine(d.DataJson);
+                    Console.WriteLine("[" + d.Id + "] - " + d.DataJson);
+                    subDataList.Add(d);
                 }
             }
-            Console.ReadKey();
+
+            Console.WriteLine("Séléctionnez un objet : ");
+            int idData = Int32.Parse(Console.ReadLine());
+
+            selecData(idData, subDataList);
+
+            selectAction(SelectedData);
+        }
+
+        public void selectAction(Data data)
+        {
+            Console.Write("Quelle action voulez vous effectuer ? ( c = create , u = update , d = delete ) : ");
+            string selectedAction = Console.ReadLine().ToLower();
+
+            switch (selectedAction) {
+                case "c":
+                    string createData = Console.ReadLine();
+                    Data dataCreated = new Data();
+                    dataCreated.DataJson = createData;
+                    dataCreated.UserId = SelectedUser.Id;
+                    connexion.insertData(dataCreated);
+                    break;
+
+                case "u":
+
+                    string updateData = Console.ReadLine();
+
+                    bool isJsonValid = JsonUtils.GetJson(updateData, SelectedDataType);
+
+                    if(isJsonValid)
+                    {
+                        data.DataJson = updateData;                 
+                        connexion.UpdateData(data);
+                    }
+
+                    break;
+
+                case "d":
+
+                    Console.Write("Voulez-vous vraiment supprimer l'objet : " + data.DataJson + " (Y/N) : ");
+                    string response = Console.ReadLine().ToLower();
+
+                    if(string.Equals(response, "y"))
+                    {
+                        connexion.deleteData(data.Id);
+                    } else
+                    {
+                        selectAction(data);
+                    }
+
+                    break;
+            }
+
+            Console.ReadKey();  
         }
     }
 }

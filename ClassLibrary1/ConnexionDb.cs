@@ -313,7 +313,47 @@ namespace Util
             }
 
             return datas;
+        }
 
+        public int UpdateData(Data data)
+        {
+            int result = 0;
+
+            try
+            {
+                MySqlCommand cmd = new MySqlCommand("UPDATE data SET datajson=@updatejson WHERE id=@dataId", connection);
+                cmd.Parameters.AddWithValue("@updatejson", data.DataJson);
+                cmd.Parameters.AddWithValue("@dataId", data.Id);
+                cmd.Prepare();
+
+                result = cmd.ExecuteNonQuery();
+            }
+            catch (MySqlException e)
+            {
+                MessageBox.Show(e.Message);
+            }
+
+            return result;
+        }
+
+        public int deleteData(int id)
+        {
+            int result = 0;
+
+            try
+            {
+                MySqlCommand cmd = new MySqlCommand("DELETE FROM data WHERE id=@dataId", connection);
+                cmd.Parameters.AddWithValue("@dataId", id);
+                cmd.Prepare();
+
+                result = cmd.ExecuteNonQuery();
+            }
+            catch (MySqlException e)
+            {
+                MessageBox.Show(e.Message);
+            }
+
+            return result;
         }
     }
 }

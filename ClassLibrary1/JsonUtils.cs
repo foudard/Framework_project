@@ -12,8 +12,26 @@ namespace Util
 {
     public class JsonUtils
     {
-        private static JSchema animalSchema = JSchema.Parse(AnimalJsonSchema);
-        private static JSchema recetteSchema = JSchema.Parse(RecetteJsonSchema);
+
+        private static JSchema animalSchema;
+
+        public static JSchema AnimalSchema
+        {
+            get { return animalSchema; }
+            set { animalSchema = value; }
+        }
+
+        private static JSchema recetteSchema;
+
+        public static JSchema RecetteSchema
+        {
+            get { return recetteSchema; }
+            set { recetteSchema = value; }
+        }
+
+
+        //private static JSchema animalSchema = JSchema.Parse(AnimalJsonSchema);
+        //private static JSchema recetteSchema = JSchema.Parse(RecetteJsonSchema);
 
         public static bool IsValidJson(string strInput)
         {
@@ -48,13 +66,16 @@ namespace Util
         {
             JObject jobj = JObject.Parse(jdata);
 
+            AnimalSchema = JSchema.Parse(AnimalJsonSchema);
+            RecetteSchema = JSchema.Parse(RecetteJsonSchema);
+
             switch (objType)
             {
                 case "Animal":
-                    return jobj.IsValid(animalSchema);
+                    return jobj.IsValid(AnimalSchema);
 
                 case "Recette":
-                    return jobj.IsValid(recetteSchema);
+                    return jobj.IsValid(RecetteSchema);
 
                 default:
                     return false;
@@ -63,30 +84,31 @@ namespace Util
         }
 
 
-        public static string AnimalJsonSchema = @"{
+        private static string AnimalJsonSchema = @"{
         'description': 'un animal',
         'type': 'object',
         'properties':
         {
-            'Nom': {'type':'string', 'required': 'true'},
-            'Espece': {'type': 'string', 'required': 'true'},
+            'Nom': {'type':'string'},
+            'Espece': {'type': 'string'},
             'Couleur': {'type': 'string'}
-        }
+        },
+        'required': ['Nom', 'Espece']
         }";
 
-        public static string RecetteJsonSchema = @"{
+        private static string RecetteJsonSchema = @"{
         'description': 'Une recette',
         'type': 'object',
         'properties':
         {
-            'Nom': {'type':'string', 'required': 'true'},
+            'Nom': {'type':'string'},
             'Ingredients': {
                 'type': 'array',
-                'items': {'type': 'string'},
-                'required': 'true' 
+                'items': {'type': 'string'}
              },
-            'Temps': {'type': 'int'},
-        }
+            'Temps': {'type': 'integer'},
+        },
+        'required': ['Nom', 'Ingredients']
         }";
     }
 }
