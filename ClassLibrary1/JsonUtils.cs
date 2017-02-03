@@ -10,11 +10,8 @@ using System.Threading.Tasks;
 
 namespace Util
 {
-    public class JsonUtils
+    public static class JsonUtils
     {
-        private static JSchema animalSchema = JSchema.Parse(AnimalJsonSchema);
-        private static JSchema recetteSchema = JSchema.Parse(RecetteJsonSchema);
-
         public static bool IsValidJson(string strInput)
         {
             strInput = strInput.Trim();
@@ -46,6 +43,9 @@ namespace Util
 
         public static bool GetJson(string jdata, string objType)
         {
+            JSchema animalSchema = JSchema.Parse(AnimalJsonSchema);
+            JSchema recetteSchema = JSchema.Parse(RecetteJsonSchema);
+
             JObject jobj = JObject.Parse(jdata);
 
             switch (objType)
@@ -62,31 +62,35 @@ namespace Util
             }
         }
 
-
         public static string AnimalJsonSchema = @"{
         'description': 'un animal',
         'type': 'object',
-        'properties':
-        {
-            'Nom': {'type':'string', 'required': 'true'},
-            'Espece': {'type': 'string', 'required': 'true'},
+        'properties': {
+            'Nom': {'type':'string'},
+            'Espece': {'type': 'string'},
             'Couleur': {'type': 'string'}
-        }
+        },
+        'required': [
+            'Nom',
+            'Espece'
+        ]
         }";
 
         public static string RecetteJsonSchema = @"{
         'description': 'Une recette',
         'type': 'object',
-        'properties':
-        {
-            'Nom': {'type':'string', 'required': 'true'},
+        'properties': {
+            'Nom': {'type':'string'},
             'Ingredients': {
                 'type': 'array',
-                'items': {'type': 'string'},
-                'required': 'true' 
+                'items': {'type': 'string'}
              },
-            'Temps': {'type': 'int'},
-        }
+            'Temps': {'type': 'integer'},
+        },
+        'required': [
+            'Nom',
+            'Ingredients'
+        ]
         }";
     }
 }

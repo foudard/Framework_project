@@ -8,6 +8,8 @@ namespace ConsoleApplication1
 {
     class UserLog
     {
+        private int userId;
+
         private string loginUser;
 
         public string LoginUser
@@ -49,8 +51,11 @@ namespace ConsoleApplication1
             set { datas = value; }
         }
 
-
-
+        public void showError(Action action)
+        {
+            Console.WriteLine("Erreur de saisie. Veuillez réessayer !");
+            action();
+        }
 
         public void authUser()
         {
@@ -62,11 +67,8 @@ namespace ConsoleApplication1
 
             User user = Login.Log(loginUser, password);
 
-            if(Login.checkRole(user, "admin"))
-            {
-                showUsers();
-            }
-
+            if (Login.checkRole(user, "admin")) showUsers();
+            else showError(() => authUser());
         }
 
         public void showUsers()
@@ -95,17 +97,17 @@ namespace ConsoleApplication1
                 User user = users.Find(u => u.Id == selectedUser);
                 typeSelectData(user.Id);
             }
-
+            else showError(() => selectUser());
         }
 
         public bool checkUser(int id)
         {
             return users.Any(user => user.Id == id);
-
         }
 
         public void typeSelectData(int id)
         {
+            userId = id;
 
             Console.Write("Selectionner le type d'affichage (id/objet) : ");
             string type = Console.ReadLine();
@@ -120,37 +122,50 @@ namespace ConsoleApplication1
             {
                 showObjectData();
             }
-
+            else showError(() => typeSelectData(userId));
         }
 
         public void showDataId() 
         {
+            bool isGoodId = false;
             foreach (Data data in datas)
             {
                 Console.WriteLine(data.Id);
             }
-
             Console.WriteLine("Séléctionnez un identifiant : ");
             int selectedDataId = Int32.Parse(Console.ReadLine());
-            selecData(selectedDataId);
-           
+            foreach (Data data in datas)
+            {
+                if (selectedDataId == data.Id) isGoodId = true; 
+            }
+            if (isGoodId == true)
+            {
+                selecData(selectedDataId);
+                typeSelectData(userId);
+            }
+            else showError(() => showDataId());
         }
 
         public void showObjectData()
         {
+            bool isGoodName = false;
             List<Type> listObjets = ObjectsUtil.getAllClasses();
-
             foreach (Type item in listObjets)
             {
                 Console.WriteLine(item.Name);
             }
-
             Console.WriteLine("Séléctionnez un type d'objet : ");
             string selectedDataType = Console.ReadLine();
-            selectDataFromType(selectedDataType);
-
-            Console.ReadKey();
-
+            foreach (Type item in listObjets)
+            {
+                if (item.Name == selectedDataType) isGoodName = true;
+            }
+            if (isGoodName == true)
+            {
+                selectDataFromType(selectedDataType);
+                typeSelectData(userId);
+            }
+            else showError(() => showObjectData());
         }
 
         public void selecData(int id)
@@ -167,7 +182,6 @@ namespace ConsoleApplication1
 
             foreach (Data d in datas)
             {
-
                 isObject = JsonUtils.GetJson(d.DataJson, type);
 
                 if (isObject)
@@ -175,7 +189,6 @@ namespace ConsoleApplication1
                     Console.WriteLine(d.DataJson);
                 }
             }
-            Console.ReadKey();
         }
     }
 }

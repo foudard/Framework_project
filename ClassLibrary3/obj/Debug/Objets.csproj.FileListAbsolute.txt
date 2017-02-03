@@ -40,3 +40,6 @@ C:\Users\Anne\Documents\Visual Studio 2015\Projects\Framework_project\ClassLibra
 C:\Users\Anne\Documents\Visual Studio 2015\Projects\Framework_project\ClassLibrary3\bin\Debug\Newtonsoft.Json.Schema.xml
 C:\Users\Anne\Documents\Visual Studio 2015\Projects\Framework_project\ClassLibrary3\obj\Debug\ClassLibrary3.dll
 C:\Users\Anne\Documents\Visual Studio 2015\Projects\Framework_project\ClassLibrary3\obj\Debug\ClassLibrary3.pdb
+C:\Users\flori_000\Documents\Visual Studio 2015\Projects\Framework_project\ClassLibrary3\bin\Debug\Newtonsoft.Json.Schema.dll
+C:\Users\flori_000\Documents\Visual Studio 2015\Projects\Framework_project\ClassLibrary3\bin\Debug\Newtonsoft.Json.Schema.xml
+C:\Users\flori_000\Documents\Visual Studio 2015\Projects\Framework_project\ClassLibrary3\obj\Debug\Objets.csprojResolveAssemblyReference.cache
