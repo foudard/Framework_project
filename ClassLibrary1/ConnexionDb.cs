@@ -41,7 +41,6 @@ namespace Util
 
         public User checkConnection(string login, string password)
         {
-            int result = 0;
             //List<Role> roles = new List<Role>();
             User user = new User();
 
@@ -224,6 +223,97 @@ namespace Util
             }
 
             return result;
+        }
+
+        public List<Role> getRoles()
+        {
+            List<Role> roles = new List<Role>();
+
+            try
+            {
+                MySqlCommand cmd = new MySqlCommand("SELECT * FROM role", connection);
+
+                MySqlDataReader reader = cmd.ExecuteReader();
+
+                while (reader.Read())
+                {
+                    Role role = new Role();
+                    role.Id = reader.GetInt32("id");
+                    role.Name = reader.GetString("name");
+
+                    roles.Add(role);
+
+                }
+
+                reader.Close();
+            }
+            catch (MySqlException e)
+            {
+                MessageBox.Show(e.Message);
+            }
+
+            return roles;
+        }
+
+        public List<User> getUsers()
+        {
+            List<User> users = new List<User>();
+
+            try
+            {
+                MySqlCommand cmd = new MySqlCommand("SELECT * FROM user", connection);
+
+                MySqlDataReader reader = cmd.ExecuteReader();
+
+                while (reader.Read())
+                {
+                    User user = new User();
+                    user.Id = reader.GetInt32("id");
+                    user.FirstName = reader.GetString("firstname");
+                    user.LastName = reader.GetString("lastname");
+
+                    users.Add(user);
+                }
+                reader.Close();
+            }
+            catch (MySqlException e)
+            {
+                MessageBox.Show(e.Message);
+            }
+
+            return users;
+        }
+
+        public List<Data> getDatas(int id)
+        {
+            List<Data> datas = new List<Data>();
+
+            try
+            {
+                MySqlCommand cmd = new MySqlCommand("SELECT * FROM data WHERE User_id=@id", connection);
+                cmd.Parameters.AddWithValue("@id", id);
+                cmd.Prepare();
+
+                MySqlDataReader reader = cmd.ExecuteReader();
+
+                while (reader.Read())
+                {
+                    Data data = new Data();
+                    data.Id = reader.GetInt32("id");
+                    data.UserId = reader.GetInt32("User_id");
+                    data.DataJson = reader.GetString("datajson");
+
+                    datas.Add(data);
+                }
+                reader.Close();
+            }
+            catch (MySqlException e)
+            {
+                MessageBox.Show(e.Message);
+            }
+
+            return datas;
+
         }
     }
 }

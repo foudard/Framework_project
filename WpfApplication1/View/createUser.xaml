@@ -7,28 +7,38 @@
       mc:Ignorable="d" 
       d:DesignHeight="300" d:DesignWidth="300"
       Title="CreateUser">
-
     <Grid>
         <StackPanel Orientation="Vertical">
             <StackPanel Orientation="Horizontal">
-                <TextBlock x:Name="textFistname" HorizontalAlignment="Left" Height="30" Margin="0,0,0,0" TextWrapping="Wrap" Text="TextBlock" Width="100"/>
-                <TextBox x:Name="textBoxFirstname" HorizontalAlignment="Left" Height="20" Margin="0,0,0,0" TextWrapping="Wrap" Text="TextBox" Width="150"/>
+                <TextBlock x:Name="textFistname" HorizontalAlignment="Left" Height="30" Margin="0,0,0,0" TextWrapping="Wrap" Text="Prénom" Width="100"/>
+                <TextBox x:Name="textBoxFirstname" HorizontalAlignment="Left" Height="20" Margin="0,0,0,0" TextWrapping="Wrap" Text="" Width="150"/>
             </StackPanel>
             <StackPanel Orientation="Horizontal">
-                <TextBlock x:Name="textLastname" HorizontalAlignment="Left" Height="30" Margin="0,0,0,0" TextWrapping="Wrap" Text="TextBlock" Width="100"/>
-                <TextBox x:Name="textBoxLastname" HorizontalAlignment="Left" Height="20" Margin="0,0,0,0" TextWrapping="Wrap" Text="TextBox" Width="150"/>
+                <TextBlock x:Name="textLastname" HorizontalAlignment="Left" Height="30" Margin="0,0,0,0" TextWrapping="Wrap" Text="Nom" Width="100"/>
+                <TextBox x:Name="textBoxLastname" HorizontalAlignment="Left" Height="20" Margin="0,0,0,0" TextWrapping="Wrap" Text="" Width="150"/>
             </StackPanel>
             <StackPanel Orientation="Horizontal">
-                <TextBlock x:Name="textLogin" HorizontalAlignment="Left" Height="30" Margin="0,0,0,0" TextWrapping="Wrap" Text="TextBlock" Width="100"/>
-                <TextBox x:Name="textBoxLogin" HorizontalAlignment="Left" Height="20" Margin="0,0,0,0" TextWrapping="Wrap" Text="TextBox" Width="150"/>
+                <TextBlock x:Name="textLogin" HorizontalAlignment="Left" Height="30" Margin="0,0,0,0" TextWrapping="Wrap" Text="Login" Width="100"/>
+                <TextBox x:Name="textBoxLogin" HorizontalAlignment="Left" Height="20" Margin="0,0,0,0" TextWrapping="Wrap" Text="" Width="150"/>
             </StackPanel>
             <StackPanel Orientation="Horizontal">
-                <TextBlock x:Name="textMdp" HorizontalAlignment="Left" Height="30" Margin="0,0,0,0" TextWrapping="Wrap" Text="TextBlock" VerticalAlignment="Top" Width="100" />
-                <TextBox x:Name="textBoxMdp" HorizontalAlignment="Left" Height="20" Margin="0,0,0,0" TextWrapping="Wrap" Text="TextBox" Width="150"/>
+                <TextBlock x:Name="textMdp" HorizontalAlignment="Left" Height="30" Margin="0,0,0,0" TextWrapping="Wrap" Text="Password" VerticalAlignment="Top" Width="100" />
+                <TextBox x:Name="textBoxMdp" HorizontalAlignment="Left" Height="20" Margin="0,0,0,0" TextWrapping="Wrap" Text="" Width="150"/>
             </StackPanel>
             <StackPanel Orientation="Horizontal">
-                <TextBlock x:Name="txtRoles" HorizontalAlignment="Left" Height="30" TextWrapping="Wrap" Text="TextBlock" Width="100"/>
-                <ListBox x:Name="listBoxRoles" HorizontalAlignment="Left" Height="20" Margin="0,0,0,0" Width="150"/>
+                <TextBlock x:Name="txtRoles" HorizontalAlignment="Left" Height="30" TextWrapping="Wrap" Text="Rôles" Width="100"/>
+                <ComboBox x:Name="comboBox" Width="150" Height="20"
+                        ScrollViewer.HorizontalScrollBarVisibility="Auto"
+                        ScrollViewer.VerticalScrollBarVisibility="Auto"
+                        ScrollViewer.CanContentScroll="True">           
+                    <ComboBox.ItemTemplate>
+                        <DataTemplate>
+                            <CheckBox Content="{Binding Name}"
+                          IsChecked="{Binding IsChecked, Mode=TwoWay}"
+                          Tag="{RelativeSource FindAncestor, AncestorType={x:Type ComboBox}}"/>
+                        </DataTemplate>
+                    </ComboBox.ItemTemplate>
+                </ComboBox>
             </StackPanel>
             <StackPanel Orientation="Horizontal">
                 <Button x:Name="btnClick" Content="Valider" Width="100" Margin="100,0,0,0"/>

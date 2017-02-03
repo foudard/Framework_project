@@ -24,5 +24,14 @@ namespace Classes
             set { userId = value; }
         }
 
+        private int id;
+
+        public int Id
+        {
+            get { return id; }
+            set { id = value; }
+        }
+
+
     }
 }

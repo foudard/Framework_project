@@ -26,34 +26,21 @@ namespace WpfApplication1.ViewModel
 
         private void BtnClick_Click(object sender, RoutedEventArgs e)
         {
-            int idUser = this.searchInDb(this.userLog.txtLogin.Text.ToString(), this.userLog.txtPwd.Password.ToString());
-            if (idUser != "admin")
+            User user = Login.Log(this.userLog.txtLogin.Text.ToString(), this.userLog.txtPwd.Password.ToString());
+
+            if (user.Id != 0)
             {
-                User user = this.connection.getUser(idUser);
-                DataInputMV viewModel = new DataInputMV(user);
-            }
-            else
-            {
-                MessageBox.Show("Login ou mot de passe invalide !");
+                if (Login.checkRole(user, "admin"))
+                {
+                    CreateUserMV createUserMV = new CreateUserMV();
+                }
+                else if (Login.checkRole(user, "user"))
+                {
+                    DataInputMV viewModel = new DataInputMV(user);
+                }
             }
         }
 
-        private string searchInDb(string login, string pwd)
-        {
-            string result = "";
-            List<Role> roles = this.connection.checkConnection(login, pwd);
-            foreach (Role item in roles)
-            {
-                if (item.Id == 1)
-                {
-                    result = "admin";
-                }
-                else if (result != "admin")
-                {
-                    result = "user";
-                }
-            }
-            return result;
-        }
+       
     }
 }

@@ -1,5 +1,7 @@
-﻿using Newtonsoft.Json;
+﻿using Classes;
+using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
+using Newtonsoft.Json.Schema;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -8,8 +10,10 @@ using System.Threading.Tasks;
 
 namespace Util
 {
-    public static class JsonUtils
+    public class JsonUtils
     {
+        private static JSchema animalSchema = JSchema.Parse(AnimalJsonSchema);
+        private static JSchema recetteSchema = JSchema.Parse(RecetteJsonSchema);
 
         public static bool IsValidJson(string strInput)
         {
@@ -39,5 +43,50 @@ namespace Util
                 return false;
             }
         }
+
+        public static bool GetJson(string jdata, string objType)
+        {
+            JObject jobj = JObject.Parse(jdata);
+
+            switch (objType)
+            {
+                case "Animal":
+                    return jobj.IsValid(animalSchema);
+
+                case "Recette":
+                    return jobj.IsValid(recetteSchema);
+
+                default:
+                    return false;
+
+            }
+        }
+
+
+        public static string AnimalJsonSchema = @"{
+        'description': 'un animal',
+        'type': 'object',
+        'properties':
+        {
+            'Nom': {'type':'string', 'required': 'true'},
+            'Espece': {'type': 'string', 'required': 'true'},
+            'Couleur': {'type': 'string'}
+        }
+        }";
+
+        public static string RecetteJsonSchema = @"{
+        'description': 'Une recette',
+        'type': 'object',
+        'properties':
+        {
+            'Nom': {'type':'string', 'required': 'true'},
+            'Ingredients': {
+                'type': 'array',
+                'items': {'type': 'string'},
+                'required': 'true' 
+             },
+            'Temps': {'type': 'int'},
+        }
+        }";
     }
 }
