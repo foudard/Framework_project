@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 
 namespace Util
 {
-    public class JsonUtils
+    public static class JsonUtils
     {
 
         private static JSchema animalSchema;
@@ -62,8 +62,25 @@ namespace Util
             }
         }
 
+        public static string getJsonObjectType(string json)
+        {
+            List<Type> classes = ObjectsUtil.getAllClasses();
+            string className = "";
+            foreach(Type typeClass in classes)
+            {
+                if (GetJson(json, typeClass.Name))
+                {
+                    className = typeClass.Name;
+                    break;        
+                }              
+            }
+
+            return className;
+        }
+
         public static bool GetJson(string jdata, string objType)
         {
+
             JObject jobj = JObject.Parse(jdata);
 
             AnimalSchema = JSchema.Parse(AnimalJsonSchema);
@@ -82,25 +99,26 @@ namespace Util
 
             }
         }
-
+       
 
         private static string AnimalJsonSchema = @"{
         'description': 'un animal',
         'type': 'object',
-        'properties':
-        {
+        'properties': {
             'Nom': {'type':'string'},
             'Espece': {'type': 'string'},
             'Couleur': {'type': 'string'}
         },
-        'required': ['Nom', 'Espece']
+        'required': [
+            'Nom',
+            'Espece'
+        ]
         }";
 
         private static string RecetteJsonSchema = @"{
         'description': 'Une recette',
         'type': 'object',
-        'properties':
-        {
+        'properties': {
             'Nom': {'type':'string'},
             'Ingredients': {
                 'type': 'array',
@@ -108,7 +126,10 @@ namespace Util
              },
             'Temps': {'type': 'integer'},
         },
-        'required': ['Nom', 'Ingredients']
+        'required': [
+            'Nom',
+            'Ingredients'
+        ]
         }";
     }
 }

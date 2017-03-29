@@ -33,8 +33,7 @@
                         ScrollViewer.CanContentScroll="True">           
                     <ComboBox.ItemTemplate>
                         <DataTemplate>
-                            <CheckBox Content="{Binding Name}"
-                          IsChecked="{Binding IsChecked, Mode=TwoWay}"
+                            <CheckBox Content="{Binding Role.Name}" IsChecked="{Binding Path=IsChecked, Mode=TwoWay}"
                           Tag="{RelativeSource FindAncestor, AncestorType={x:Type ComboBox}}"/>
                         </DataTemplate>
                     </ComboBox.ItemTemplate>

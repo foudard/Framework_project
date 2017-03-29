@@ -35,5 +35,17 @@ namespace Util
             Console.WriteLine();
             return sb.ToString();
         }
+
+        public static string ReadLine()
+        {
+            string input = Console.ReadLine();
+            bool isExit = String.Equals(input, "exit", StringComparison.InvariantCultureIgnoreCase);
+            if(isExit)
+            {
+                Environment.Exit(0);
+            }
+
+            return input;
+        }
     }
 }

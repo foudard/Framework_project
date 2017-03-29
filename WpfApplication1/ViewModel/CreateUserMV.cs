@@ -10,46 +10,59 @@ using WpfApplication1.View;
 
 namespace WpfApplication1.ViewModel
 {
-    class CreateUserMV : EntityBase
+    public class CreateUserMV
     {
         private CreateUser user;
         private ConnexionDb connection = ConnexionDb.Instance();
 
-        private List<Role> roles;
-
-        public List<Role> Roles
+        public class RoleList :  EntityBase
         {
-            get { return roles; }
-            set {
-                roles = value;
-                
+
+            public RoleList(Role role)              
+            {
+                Role = role;
+            }
+
+            private Role role;
+
+            public Role Role
+            {
+                get { return role; }
+                set { role = value; }
+            }
+
+            private bool isChecked = false;
+            public bool IsChecked
+            {
+                get
+                {
+                    return isChecked;
+                }
+                set
+                {
+                    isChecked = value;
+                    OnPropertyChanged("IsChecked");
+                }
             }
         }
 
-        private bool isChecked;
-        public bool IsChecked
+
+        private List<RoleList> listRoles = new List<RoleList>();
+
+        public List<RoleList> ListRoles
         {
-            get
-            {
-                return isChecked;
-            }
-            set
-            {
-                isChecked = value;
-                //NotifyPropertyChanged("IsChecked");
-            }
+            get { return listRoles; }
+            set { listRoles = value; }
         }
-
-
 
         public CreateUserMV()
         {
             this.user = new CreateUser();
             this.user.DataContext = this;
             this.user.btnClick.Click += BtnClick_Click;
-            this.Roles = getRoles();
+            initListRoles(getRoles());
 
-            this.user.comboBox.ItemsSource = Roles;
+            this.user.comboBox.ItemsSource = ListRoles;
 
             //this.Roles = getRoles();
             Application.Current.Windows.OfType<Window>().FirstOrDefault().Content = this.user;
@@ -58,8 +71,9 @@ namespace WpfApplication1.ViewModel
 
         private void BtnClick_Click(object sender, RoutedEventArgs e)
         {
+            // Récupérer les information de l'utilisateur à créer
+            List<Role> selectedData = ListRoles.Where(d => d.IsChecked).Select(d => d.Role).ToList();
 
-            
             // Insertion de l'utilisateur en base
             throw new NotImplementedException();
         }
@@ -67,6 +81,15 @@ namespace WpfApplication1.ViewModel
         private List<Role> getRoles ()
         {
             return this.connection.getRoles();
+        }
+
+        private void initListRoles(List<Role> roles)
+        {
+            foreach(Role role in roles)
+            {
+                RoleList rl = new RoleList(role);
+                ListRoles.Add(rl);
+            }
         }
     }
 }
